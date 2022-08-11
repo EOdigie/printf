@@ -12,7 +12,7 @@ int _print_string(va_list list)
 	int j = 0;
 	char *string = va_arg(list, char *);
 
-	while (string[i] != '\0')
+	while (string[j] != '\0')
 	{
 		_putchar(string[j]);
 		j++;
