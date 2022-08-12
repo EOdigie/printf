@@ -6,7 +6,7 @@ int _putchar(char c);
 int _printf(const char *format, ...);
 int _print_char(va_list list);
 int _print_int(va_list list);
-int _print_string(va_list list);
+int _print_string(va_list list, char *buf, unsigned int ibuf);
 int (*choose_func(char c))(va_list);
 
 #endif
