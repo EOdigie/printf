@@ -16,31 +16,35 @@ int _printf(const char *format, ...)
 	int i = 0;
 	int len_printed = 0;
 
-	if (format == NULL)
+	if (format == NULL || *format == '\0')
+	{
 		return (-1);
-	
+	}
 	va_start(list, format);
-
 	while (format[i] != '\0')
 	{
-		if (format[i] == '%')
+		if (format[i] != '%')
 		{
-			if (format[i + 1] == '\0')
-				return (-1);
-			func = get_func(format[i + 1]);
-			if (func == NULL)
-				len_printed += print_nan(format[i], format[i + 1]);
-			else
-				count += func(list)
+			_putchar(format[i]);
+			len_printed++;
+		}
+		else if (format[i + 1] == '%')
+		{
 			i++;
+			_putchar('%');
+			len_printed++;
 		}
 		else
 		{
-		_putchar(format[i]);
-		len_printed++;
+			funct = choose_func(format[i + 1]);
+			if (funct != NULL)
+			{
+				len_printed += funct(list);
+				i++;
+			}
 		}
 		i++;
 	}
 	va_end(list);
-	return(len_printed);
+	return (len_printed);
 }
