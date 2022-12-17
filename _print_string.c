@@ -7,15 +7,17 @@
  *
  * Return: Number of characters printed
  */
-int _print_string(va_list list)
+int _print_string(va_list list, int len)
 {
-	int j = 0;
-	char *string = va_arg(list, char *);
+	const char *string = va_arg(list, char *);
 
-	while (string[j] != '\0')
+	if (string == NULL)
 	{
-		_putchar(string[j]);
-		j++;
+		string = "(null)";
 	}
-	return (0);
+	while (*string)
+	{
+		len += _putchar(*string++);
+	}
+	return (len);
 }

@@ -7,7 +7,7 @@
  * @va-list: Specified format
  * Return: The function to be used
  */
-int (*choose_func(char c))(va_list)
+int (*choose_func(char c))(va_list, int)
 {
 	if (c == 'c')
 		return (_print_char);

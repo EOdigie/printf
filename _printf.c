@@ -1,8 +1,3 @@
-#include <stdarg.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stddef.h>
-#include <unistd.h>
 #include "main.h"
 /**
  * _printf - produces output according to a format.
@@ -12,38 +7,44 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int (*funct)(va_list);
+	int (*funct)(va_list, int);
 	int i = 0;
 	int len_printed = 0;
 
-	if (format == NULL || *format == '\0')
+	va_start(list, format);
+	if (format == NULL)
 	{
 		return (-1);
 	}
-	va_start(list, format);
-	while (format[i] != '\0')
+	while (format[i] != '\0' && format[i] != '\0')
 	{
 		if (format[i] != '%')
 		{
-			_putchar(format[i]);
-			len_printed++;
-		}
-		else if (format[i + 1] == '%')
-		{
 			i++;
-			_putchar('%');
-			len_printed++;
+
+			if (format[i] == '%')
+			{
+				len_printed += _putchar(format[i]);
+				i++;
+				continue;
+			}
+			if (format[i] == '\0')
+				return (-1);
+			funct = choose_func(format[i]);
+			if (funct != NULL)
+				len_printed = funct(list, len_printed);
+			else
+			{
+				len_printed += _putchar(format[i - 1]);
+				len_printed += _putchar(format[i]);
+			}
+			i++;
 		}
 		else
 		{
-			funct = choose_func(format[i + 1]);
-			if (funct != NULL)
-			{
-				len_printed += funct(list);
-				i++;
-			}
+			len_printed += _putchar(format[i]);
+			i++;
 		}
-		i++;
 	}
 	va_end(list);
 	return (len_printed);
