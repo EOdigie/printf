@@ -9,10 +9,19 @@
  */
 int (*choose_func(char c))(va_list, int)
 {
-	if (c == 'c')
-		return (_print_char);
-	if (c == 's')
-		return (_print_string);
+	forms specifiers[] = {
+		{'c', _print_char},
+		{'s', _print_string}
+	};
 
+	int i;
+
+	for (i = 0; specifiers[i].spec; i++)
+	{
+		if (c == specifiers[i].spec)
+		{
+			return specifiers[i].funct;
+		}
+	}
 	return (NULL);
 }

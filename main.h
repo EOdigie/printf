@@ -4,7 +4,14 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <stdint.h>
 #include <unistd.h>
+
+typedef struct order
+{
+	char spec;
+	int (*funct)(va_list, int);
+} forms;
 
 
 int _putchar(char c);
