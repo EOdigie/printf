@@ -73,6 +73,6 @@ int _print_int(va_list list, int len)
 
 	n = va_arg(list, int);
 
-	len = _putchar_int(n,len);
+	len = _putchar_int(n, len);
 	return (len);
 }

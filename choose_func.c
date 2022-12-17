@@ -4,7 +4,6 @@
  * *choose_func - selects the functions output according to a format
  * @c: Specified format
  * @va-list: Specified format
- * @len: length
  * Return: The function to be used
  */
 int (*choose_func(char c))(va_list, int)
@@ -22,7 +21,7 @@ int (*choose_func(char c))(va_list, int)
 	{
 		if (c == specifiers[i].spec)
 		{
-			return specifiers[i].fspec;
+			return (specifiers[i].fspec);
 		}
 	}
 	return (NULL);
