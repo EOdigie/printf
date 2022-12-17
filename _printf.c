@@ -18,10 +18,9 @@ int _printf(const char *format, ...)
 	}
 	while (format[i] != '\0' && format[i] != '\0')
 	{
-		if (format[i] != '%')
+		if (format[i] == '%')
 		{
 			i++;
-
 			if (format[i] == '%')
 			{
 				len_printed += _putchar(format[i]);

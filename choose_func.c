@@ -1,17 +1,19 @@
 #include "main.h"
-#include <stddef.h>
 
 /**
  * *choose_func - selects the functions output according to a format
  * @c: Specified format
  * @va-list: Specified format
+ * @len: length
  * Return: The function to be used
  */
 int (*choose_func(char c))(va_list, int)
 {
 	forms specifiers[] = {
 		{'c', _print_char},
-		{'s', _print_string}
+		{'s', _print_string},
+		{'d', _print_int},
+		{'i', _print_int}
 	};
 
 	int i;
@@ -20,7 +22,7 @@ int (*choose_func(char c))(va_list, int)
 	{
 		if (c == specifiers[i].spec)
 		{
-			return specifiers[i].funct;
+			return specifiers[i].fspec;
 		}
 	}
 	return (NULL);
